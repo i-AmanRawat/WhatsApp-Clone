@@ -1,11 +1,23 @@
+import { useContext } from "react";
 import React from "react";
 import { qrCodeImage } from "../../constants/data";
+import { AccountContext } from "../../context/AccountProvider";
 import companyLogo from "../../logo/companyLogo.svg";
-import { GoogleLogin } from "@react-oauth/google";
+import { useForm } from "react-hook-form";
 
 export default function LoginDialog() {
-  function onLoginSuccess() {}
-  function onLoginError() {}
+  const { register, handleSubmit } = useForm();
+  const { setAccount } = useContext(AccountContext);
+
+  function handleRegistration(data) {
+    setAccount(data);
+    console.log(data);
+  }
+
+  function onErrors(errors) {
+    console.error(errors);
+  }
+
   return (
     <div className="flex flex-col justify-between text-center h-screen">
       <div className="top bg-[#FEA1A1] h-1/4">
@@ -34,9 +46,26 @@ export default function LoginDialog() {
             <li className="text-2xl pb-2">5. Feel connected to your friends</li>
           </ol>
         </div>
-        <div className="top-right qr-code-img w-auto">
-          <img src={qrCodeImage} alt="" className="" />
-          <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginError} />
+        <div className="top-right qr-code-img w-auto flex">
+          <form onSubmit={handleSubmit(handleRegistration, onErrors)}>
+            <div className="">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                placeholder="Name"
+                {...register("name", { required: true })}
+              />
+            </div>
+            <div className="">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                placeholder="Email"
+                {...register("email", { required: true })}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
       <div className="bottom bg-[#111b21] h-3/4"></div>

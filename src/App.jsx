@@ -1,12 +1,11 @@
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./App.css";
-import LoginDialog from "./components/account/LoginDialog";
+import Messenger from "./components/Messenger";
+import AccountProvider from "./context/AccountProvider";
 
 export default function App() {
-  const clientId = "";
   return (
-    <GoogleOAuthProvider clientId={clientId}>
-      <LoginDialog />
-    </GoogleOAuthProvider>
+    <AccountProvider>
+      <Messenger />
+    </AccountProvider>
   );
 }
