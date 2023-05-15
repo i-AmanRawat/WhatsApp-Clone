@@ -20,7 +20,7 @@ export default function LoginDialog() {
 
   return (
     <div className="flex flex-col justify-between text-center h-screen">
-      <div className="top bg-[#FEA1A1] h-1/4">
+      <div className="top bg-[#00a884] h-1/4">
         <div className="absolute flex left-0 sm:left-5 lg:left-10 xl:left-40 top-5 w-[80px] h-[80px] xl:w-[100px] xl:h-[100px]">
           <img src={companyLogo} alt="" />
           <span className="inline-block align-middle m-5 ml-0 font-normal tracking-wide text-3xl font-serif leading-10">

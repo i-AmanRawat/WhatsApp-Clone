@@ -1,7 +1,4 @@
-.top {
-  background: green;
-}
-
-.bottom {
-  background: blue;
+body {
+  margin: 0;
+  padding: 0;
 }
