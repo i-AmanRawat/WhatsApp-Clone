@@ -1,12 +1,6 @@
 import { Icon } from "@iconify/react";
-// import { useForm, useController } from "react-hook-form";
 
 export default function Search() {
-  //   const { register, handleSubmit } = useForm();
-  //   const controller = useController("value", {
-  //     autoFocus: false,
-  //   });
-  //   function hadndleSubmit
   return (
     <div className="Search-box flex bg-[#1f2c33] mx-4 my-2 rounded-lg items-center">
       <Icon
