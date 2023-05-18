@@ -10,14 +10,14 @@ export default function MoreVertMenu() {
 
   return (
     <div className="">
-      <button>
+      <button className="more-vert-icon-btn flex hover:bg-[#374248] hover:rounded-full items-center mr-5 ">
         <Icon
           onClick={toggleDisplay}
-          className="more-vert-icon mr-5"
+          className="more-vert-icon p-1"
           icon="ic:baseline-more-vert"
           color="#aeb9c1"
-          width="24"
-          height="24"
+          width="35"
+          height="35"
         />
       </button>
       <div

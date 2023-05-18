@@ -23,28 +23,34 @@ export default function Header() {
             />
           </button>
         </div>
-        <div className="flex ml-auto space-x-16">
-          <Icon
-            className="group-icon"
-            icon="ic:baseline-groups"
-            color="#aeb9c1"
-            width="24"
-            height="24"
-          />
-          <Icon
-            className="status-icon"
-            icon="pajamas:status"
-            color="#aeb9c1"
-            width="24"
-            height="24"
-          />
-          <Icon
-            className="chat-icon"
-            icon="material-symbols:chat"
-            color="#aeb9c1"
-            width="24"
-            height="24"
-          />
+        <div className="flex ml-auto space-x-9">
+          <button className="group-icon-btn hover:bg-[#374248] hover:rounded-full ">
+            <Icon
+              className="group-icon p-1"
+              icon="ic:baseline-groups"
+              color="#aeb9c1"
+              width="40"
+              height="40"
+            />
+          </button>
+          <button className="status-icon-btn hover:bg-[#374248] hover:rounded-full">
+            <Icon
+              className="status-icon p-2"
+              icon="pajamas:status"
+              color="#aeb9c1"
+              width="40"
+              height="40"
+            />
+          </button>
+          <button className="chat-icon-btn hover:bg-[#374248] hover:rounded-full ">
+            <Icon
+              className="chat-icon p-2"
+              icon="material-symbols:chat"
+              color="#aeb9c1"
+              width="40"
+              height="40"
+            />
+          </button>
           <MoreVertMenu />
         </div>
       </header>
