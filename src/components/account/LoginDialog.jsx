@@ -4,14 +4,25 @@ import { qrCodeImage } from "../../constants/data";
 import { AccountContext } from "../../context/AccountProvider";
 import companyLogo from "../../logo/companyLogo.svg";
 import { useForm } from "react-hook-form";
-
 export default function LoginDialog() {
   const { register, handleSubmit } = useForm();
   const { setAccount } = useContext(AccountContext);
 
-  function handleRegistration(data) {
+  const  handleRegistration=async(data)=>{
     setAccount(data);
     console.log(data);
+    const {name,email}=data;
+    const res=await fetch("http://127.0.0.1:5000/signup",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+      name,email
+      })
+   	
+    });
+	console.log("ok")
   }
 
   function onErrors(errors) {
@@ -47,7 +58,7 @@ export default function LoginDialog() {
           </ol>
         </div>
         <div className="top-right qr-code-img w-auto flex">
-          <form onSubmit={handleSubmit(handleRegistration, onErrors)}>
+          <form onSubmit={handleSubmit(handleRegistration, onErrors)}method="POST">
             <div className="">
               <label htmlFor="name">Name</label>
               <input
