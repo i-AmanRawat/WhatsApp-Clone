@@ -20,6 +20,7 @@ export default function LoginDialog() {
   } = useForm();
   const { account, setAccount } = useContext(AccountContext);
 
+
 const  handleRegistration=async(data)=> {
     setAccount((prevData) => {
     return { ...prevData, ...data }  
@@ -34,6 +35,7 @@ const  handleRegistration=async(data)=> {
     });
     console.log(data);
    console.log({ ...register("name") });
+
   }
   function onErrors(errors) {
     console.error(errors);
@@ -70,6 +72,7 @@ const  handleRegistration=async(data)=> {
 
         {/* <div className="top-right form w-auto flex">
           <form onSubmit={handleSubmit(handleRegistration)}>
+
             <div className="">
               <label htmlFor="name">Name</label>
               <input
@@ -182,6 +185,123 @@ const  handleRegistration=async(data)=> {
 
         <div className="top-left form-info w-auto ">
           <form onSubmit={handleSubmit(handleRegistration)}>
+
+            <div className="">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                placeholder="name"
+                {...register("name", {
+                  required: "Name is required",
+                })}
+              />
+              {errors.name && (
+                <p className="errorMsg text-red-500">{errors.name.message}</p>
+              )}
+            </div>
+            <div className="">
+              <label htmlFor="email">Email</label>
+              <input
+                onFocus={false}
+                type="email"
+                placeholder="email"
+                {...register("email", {
+                  required: "Email is Required",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                    message: "Email is not valid",
+                  },
+                })}
+
+              />
+              {errors.email && (
+                <p className="errorMsg text-red-500">{errors.email.message} </p>
+              )}
+            </div>
+            <div className="">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                placeholder="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Must contain atleast 6 characters",
+                  },
+                })}
+              />
+
+              {errors.password && (
+                <p className="errorMsg text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
+
+            </div>
+            <div className="select-profile">
+              <label htmlFor="profile-01">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture01"
+                  id="profile-01"
+                />
+                <img src={profilePicture01} alt="" className="" />
+              </label>
+              <label htmlFor="profile02">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture02"
+                  id="profile-02"
+                />
+                <img src={profilePicture02} alt="" className="" />
+              </label>
+              <label htmlFor="profile03">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture03"
+                  id="profile-03"
+                />
+                <img src={profilePicture03} alt="" className="" />
+              </label>
+              <label htmlFor="profile04">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture04"
+                  id="profile-04"
+                />
+                <img src={profilePicture04} alt="" className="" />
+              </label>
+              <label htmlFor="profile05">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture05"
+                  id="profile-05"
+                />
+                <img src={profilePicture05} alt="" className="" />
+              </label>
+              <label htmlFor="profile06">
+                <input
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture06"
+                  id="profile-06"
+                />
+                <img src={profilePicture06} alt="" className="" />
+              </label>
+
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div> */}
+
+        <div className="top-left form-info w-auto ">
+          <form onSubmit={handleSubmit(handleRegistration)}>
             <div className="">
               <label htmlFor="name">Name</label>
               <input
@@ -232,6 +352,73 @@ const  handleRegistration=async(data)=> {
               )}
             </div>
             <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div className="top-right form-profile-selector w-auto">
+          <form onSubmit={handleSubmit(handleRegistration)}>
+            <div className="select-profile grid gap-10 grid-cols-2 grid-rows-3">
+              <label htmlFor="profile-01">
+                <img src={profilePicture01} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture01"
+                  id="profile-01"
+                />
+              </label>
+              <label htmlFor="profile02">
+                <img src={profilePicture02} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture02"
+                  id="profile-02"
+                />
+              </label>
+              <label htmlFor="profile03">
+                <img src={profilePicture03} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture03"
+                  id="profile-03"
+                />
+              </label>
+              <label htmlFor="profile04">
+                <img src={profilePicture04} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture04"
+                  id="profile-04"
+                />
+              </label>
+              <label htmlFor="profile05">
+                <img src={profilePicture05} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture05"
+                  id="profile-05"
+                />
+              </label>
+              <label htmlFor="profile06">
+                <img src={profilePicture06} alt="" className="relative" />
+                <input
+                  className="relative left-[-80px] top-[-80px]"
+                  {...register("profilePicture")}
+                  type="radio"
+                  value="profilePicture06"
+                  id="profile-06"
+                />
+              </label>
+            </div>
           </form>
         </div>
 
