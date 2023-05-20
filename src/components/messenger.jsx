@@ -5,7 +5,7 @@ import { AccountContext } from "../context/AccountProvider";
 
 export default function Messenger() {
   const { account } = useContext(AccountContext);
-  console.log("account");
+  console.log(account);
   return <>{account ? <ChatDialog /> : <LoginDialog />}</>;
   // return <ChatDialog />;
 }

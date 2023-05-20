@@ -24,5 +24,17 @@ export const profilePicture01 =
 export const profilePicture02 =
   "https://cdn-icons-png.flaticon.com/128/706/706816.png";
 
+export const profilePicture03 =
+  "https://cdn-icons-png.flaticon.com/128/6084/6084667.png";
+
+export const profilePicture04 =
+  "https://cdn-icons-png.flaticon.com/128/10551/10551812.png";
+
+export const profilePicture05 =
+  "https://cdn-icons-png.flaticon.com/128/6084/6084444.png";
+
+export const profilePicture06 =
+  "https://cdn-icons-png.flaticon.com/128/6084/6084278.png";
+
 // WhatsApp Chat Background Image used in component Messages.jsx
 // https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png

@@ -1,15 +1,14 @@
 {
   "name": "shareme",
+  "private": true,
   "version": "0.0.0",
   "type": "module",
-  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9"
