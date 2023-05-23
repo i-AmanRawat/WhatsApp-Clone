@@ -9,7 +9,7 @@ export default function MoreVertMenu() {
   }
 
   return (
-    <div className="">
+    <div className=" -z-0">
       <button className="more-vert-icon-btn flex hover:bg-[#374248] hover:rounded-full items-center mr-5 ">
         <Icon
           onClick={toggleDisplay}

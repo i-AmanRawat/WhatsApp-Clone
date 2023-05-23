@@ -2,8 +2,8 @@ import { profilePicture01 } from "../../constants/data";
 
 export default function MyProfile() {
   return (
-    <>
-      <section className="profile-icon  flex justify-center">
+    <div className="z-20 bg-[#111b20]">
+      <section className="profile-icon  flex justify-center ">
         <img
           className="rounded-full w-52 h-52 my-7"
           src={profilePicture01}
@@ -25,6 +25,6 @@ export default function MyProfile() {
         <span className="block text-[#008069] mb-3.5">About</span>
         <span className="block text-[#d1d7db]">Eat! Code! Sleep! Repeat!</span>
       </section>
-    </>
+    </div>
   );
 }

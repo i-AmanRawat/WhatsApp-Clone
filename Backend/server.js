@@ -13,7 +13,7 @@ const password=process.env.db_password;
 // connectiong database
 main().catch(err=>console.log(err));
 async function main(){
-    await mongoose.connect(`mongodb+srv://${username}:${password}@cluster1.vxthoqp.mongodb.net/?retryWrites=true&w=majority `);
+    await mongoose.connect(`mongodb+srv://pranjalrana:pranjalrana@cluster1.vxthoqp.mongodb.net/?retryWrites=true&w=majority `);
     console.log("connected")
 }
 app.use(require("./routes/router.js"));
