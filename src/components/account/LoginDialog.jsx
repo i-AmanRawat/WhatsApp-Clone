@@ -21,7 +21,6 @@ export default function LoginDialog() {
     formState: { errors },
   } = useForm();
   const { account, setAccount } = useContext(AccountContext);
-
   const [toggle, setToggle] = useState(false);
   const [profilePicture, setProfilePicture] = useState(profilePicture01);
 
@@ -31,12 +30,13 @@ export default function LoginDialog() {
     });
 
     const { name, email, password } = data;
+    
     const res = await fetch("http://127.0.0.1:5000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password})
     });
     console.log(data);
   };
@@ -49,9 +49,16 @@ export default function LoginDialog() {
     setToggle(!toggle);
   }
 
-  function handleProfileClick(e) {
+   async handleProfileClick(e)=> {
     console.log(e.currentTarget.id);
     setProfilePicture(e.currentTarget.id);
+    const res = await fetch("http://127.0.0.1:5000/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({e.currentTarget.id})
+    });
   }
 
   return (
