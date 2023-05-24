@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import React from "react";
+import axios from "axios";
 import {
   profilePicture01,
   profilePicture02,
@@ -13,7 +14,6 @@ import companyLogo from "../../logo/companyLogo.svg";
 import { useForm } from "react-hook-form";
 import "../../index.css";
 import { Icon } from "@iconify/react"; //edit icon
-
 export default function LoginDialog() {
   const {
     register,
@@ -23,21 +23,15 @@ export default function LoginDialog() {
   const { account, setAccount } = useContext(AccountContext);
   const [toggle, setToggle] = useState(false);
   const [profilePicture, setProfilePicture] = useState(profilePicture01);
-
   const handleRegistration = async (data) => {
     setAccount((prevData) => {
       return { ...prevData, ...data };
     });
-
-    const { name, email, password } = data;
-    
-    const res = await fetch("http://127.0.0.1:5000/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password})
-    });
+     try{
+    	const res= await axios.post("http://127.0.0.1:5000/signup",data)
+     }catch(err){
+	console.log(error.message);
+	}
     console.log(data);
   };
 
@@ -53,14 +47,14 @@ export default function LoginDialog() {
     console.log(e.currentTarget.id);
     setProfilePicture(e.currentTarget.id);
     let profile=e.currentTarget.id;
-     const res = await fetch("http://127.0.0.1:5000/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body:JSON.stringify({profile}),
-    });
-      console.log("ok")
+     //const res = await fetch("http://127.0.0.1:5000/signup", {
+      //method: "POST",
+     // headers: {
+      //  "Content-Type": "application/json",
+      //},
+     // body:JSON.stringify({profile}),
+   // });
+     // console.log("ok")
   }
 
   return (

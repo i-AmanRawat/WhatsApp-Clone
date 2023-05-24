@@ -4,7 +4,6 @@ const contactSchema = new mongoose.Schema({
   name:{type:String,required:true},
   email:{type:String,required:true,unique:true},
   password:{type:String,required:true},
-   profile:{type:String,required:true}
 });
 contactSchema.pre("save",async function(next){
 	if(this.isModified("password")){
