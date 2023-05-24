@@ -1,3 +1,4 @@
+
 const signup=require("../database/db.js");
 const bcrypt = require('bcryptjs');
  const adduser=async(req,res)=>{
@@ -25,3 +26,4 @@ const getuser=async(req,res)=>{
 	
     }}
 module.exports=getuser;
+

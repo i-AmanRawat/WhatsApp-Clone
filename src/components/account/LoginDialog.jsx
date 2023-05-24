@@ -42,19 +42,10 @@ export default function LoginDialog() {
   function handleEditClick() {
     setToggle(!toggle);
   }
-				
-    async function handleProfileClick(e){
+
+  async function handleProfileClick(e) {
     console.log(e.currentTarget.id);
     setProfilePicture(e.currentTarget.id);
-    let profile=e.currentTarget.id;
-     //const res = await fetch("http://127.0.0.1:5000/signup", {
-      //method: "POST",
-     // headers: {
-      //  "Content-Type": "application/json",
-      //},
-     // body:JSON.stringify({profile}),
-   // });
-     // console.log("ok")
   }
 
   return (
