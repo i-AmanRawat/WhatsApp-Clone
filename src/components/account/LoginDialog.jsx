@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import React from "react";
-import axios from "axios";
 import {
   profilePicture01,
   profilePicture02,
@@ -27,11 +26,14 @@ export default function LoginDialog() {
     setAccount((prevData) => {
       return { ...prevData, ...data };
     });
-     try{
-    	const res= await axios.post("http://127.0.0.1:5000/signup",data)
-     }catch(err){
-	console.log(error.message);
-	}
+      const { name, email, password } = data;
+     const res = await fetch("http://127.0.0.1:80/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password, profilePicture }),
+    });
     console.log(data);
   };
 
