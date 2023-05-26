@@ -5,7 +5,7 @@ export default function Conversations() {
 	useEffect(()=>{
 	const fetchData=async()=>{
 		try{
-    			const resp= await axios.get("http://127.0.0.1:80/users")
+			const resp= await axios.get("http://127.0.0.1:80/users")
 			setUsers(resp);
     		 }catch(err){
 			console.log(err.message);

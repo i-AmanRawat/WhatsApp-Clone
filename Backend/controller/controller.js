@@ -1,9 +1,9 @@
 
 const signup=require("../database/db.js");
 const bcrypt = require('bcryptjs');
- const adduser=async(req,res)=>{
-	const{name,email,password,profilePicture}=req.body;
+exports.adduser=async(req,res)=>{
 	console.log("ok") 
+	const{name,email,password,profilePicture}=req.body;
  	try{
 		
 		let userexist=await signup.findOne({email:email});
@@ -17,8 +17,8 @@ const bcrypt = require('bcryptjs');
 	
     	res.status(400).json(error.message);
     }}
-module.exports=adduser;
-const getuser=async(req,res)=>{
+
+exports.getuser=async(req,res)=>{
  	try{
 	 const users=await signup.find({});
 	 res.status(200).json(users);
@@ -26,5 +26,9 @@ const getuser=async(req,res)=>{
     	res.status(400).json(error.message);
 	
     }}
-module.exports=getuser;
+
+
+
+
+
 
