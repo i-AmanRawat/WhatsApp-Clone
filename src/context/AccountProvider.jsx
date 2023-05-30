@@ -4,9 +4,10 @@ export const AccountContext = createContext(null); //we will access user data fr
 
 export default function AccountProvider({ children }) {
   const [account, setAccount] = useState();
+  const [person, setPerson] = useState({});
 
   return (
-    <AccountContext.Provider value={{ account, setAccount }}>
+    <AccountContext.Provider value={{ account, setAccount, person, setPerson }}>
       {children}
     </AccountContext.Provider>
   );

@@ -21,5 +21,5 @@ async function main() {
 app.use(require("./routes/router.js"));
 // listening
 app.listen(80, () => {
-  console.log('server running at 80');
+  console.log("server running at 80");
 });

@@ -5,14 +5,9 @@ import Conversations from "./Conversations";
 
 export default function Menu() {
   return (
-    <div className="h-full min-w-[510px] ">
+    <div className="h-full min-w-[430px] overflow-auto scroll-smooth">
       <Header />
       <Search />
-      <Conversations />
-      <Conversations />
-      <Conversations />
-      <Conversations />
-      <Conversations />
       <Conversations />
     </div>
   );

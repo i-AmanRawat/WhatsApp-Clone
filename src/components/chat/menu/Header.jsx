@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <div className="relative">
-      <header className="flex bg-[#1f2c33] py-2.5 px-4 items-center">
+      <header className="flex bg-[#1f2c33] py-1 pt-2 px-4 items-center">
         <div className="">
           <button onClick={toggleDrawer}>
             <img
@@ -29,8 +29,8 @@ export default function Header() {
               className="group-icon p-1"
               icon="ic:baseline-groups"
               color="#aeb9c1"
-              width="40"
-              height="40"
+              width="35"
+              height="35"
             />
           </button>
           <button className="status-icon-btn hover:bg-[#374248] hover:rounded-full">
@@ -38,8 +38,8 @@ export default function Header() {
               className="status-icon p-2"
               icon="pajamas:status"
               color="#aeb9c1"
-              width="40"
-              height="40"
+              width="35"
+              height="35"
             />
           </button>
           <button className="chat-icon-btn hover:bg-[#374248] hover:rounded-full ">
@@ -47,8 +47,8 @@ export default function Header() {
               className="chat-icon p-2"
               icon="material-symbols:chat"
               color="#aeb9c1"
-              width="40"
-              height="40"
+              width="35"
+              height="35"
             />
           </button>
           <MoreVertMenu />

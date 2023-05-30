@@ -27,8 +27,8 @@ export default function LoginDialog() {
     setAccount((prevData) => {
       return { ...prevData, ...data };
     });
-      const { name, email, password } = data;
-     const res = await fetch("http://127.0.0.1:80/signup", {
+    const { name, email, password } = data;
+    const res = await fetch("http://127.0.0.1:80/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export default function LoginDialog() {
     });
     console.log(data);
   };
-
+  console.log(profilePicture01);
   function onErrors(errors) {
     console.error(errors);
   }
@@ -246,4 +246,3 @@ export default function LoginDialog() {
     </div>
   );
 }
- 

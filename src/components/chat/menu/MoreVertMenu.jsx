@@ -16,12 +16,12 @@ export default function MoreVertMenu() {
           className="more-vert-icon p-1"
           icon="ic:baseline-more-vert"
           color="#aeb9c1"
-          width="35"
-          height="35"
+          width="33"
+          height="33"
         />
       </button>
       <div
-        className={`more-vert-content bg-[#233138] text-[#d1d7dc] left-[272px] top-[55px] rounded-md py-5 ${
+        className={`more-vert-content bg-[#233138] text-[#d1d7dc] left-[184px] top-[47px] rounded-md py-5 ${
           display ? "block" : "hidden"
         } absolute `}
       >
