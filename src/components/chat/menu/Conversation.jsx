@@ -1,11 +1,18 @@
 import { AccountContext } from "../../../context/AccountProvider";
 import { useContext } from "react";
-
 export default function Conversation({ user }) {
   const { account, setPerson } = useContext(AccountContext);
 
-  function getUser() {
+  const getUser=async ()=> {
     setPerson(user);
+    const res=await fetch("http://127.0.0.1:80/add", {
+      		method: "POST",
+      		headers: {
+        		"Content-Type": "application/json",
+      			},
+      		body: JSON.stringify ({senderId:account.email,receiverId:user.email}),
+		
+    });
   }
 
   return (

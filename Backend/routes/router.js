@@ -1,9 +1,8 @@
 const express=require("express");
 const router=express.Router();
-const getuser=require("../controller/controller.js");
-router.get('/users',getuser.getuser)
-const adduser=require("../controller/controller.js");
-router.post('/signup',adduser.adduser)
-
-
+const get=require("../controller/controller.js");
+const post=require("../controller/controller.js");
+router.get('/users',get.getuser)
+router.post('/signup',post.adduser)
+router.post('/add',post.add)
 module.exports=router;
