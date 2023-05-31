@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-
 export default function ChatFooter() {
   return (
     <div className="chat-footer w-auto ">
