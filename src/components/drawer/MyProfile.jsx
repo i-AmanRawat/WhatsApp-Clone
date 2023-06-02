@@ -2,7 +2,7 @@ import { profilePicture01 } from "../../constants/data";
 
 export default function MyProfile() {
   return (
-    <div className="z-20 bg-[#111b20]">
+    <div className="z-20 bg-[#111b20] h-screen">
       <section className="profile-icon  flex justify-center ">
         <img
           className="rounded-full w-52 h-52 my-7"

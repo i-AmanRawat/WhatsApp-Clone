@@ -38,3 +38,12 @@ export const profilePicture06 =
 
 // WhatsApp Chat Background Image used in component Messages.jsx
 // https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png
+
+export const chatBgImg1 =
+  "https://w0.peakpx.com/wallpaper/580/650/HD-wallpaper-whatsapp-bg-dark-background.jpg";
+export const chatBgImg2 =
+  "https://w0.peakpx.com/wallpaper/550/527/HD-wallpaper-whatsapp-paper-black-background.jpg";
+export const chatBgImg3 =
+  "https://w0.peakpx.com/wallpaper/220/854/HD-wallpaper-whatsapp-black-abstract-abstract-digital-abstraction-abstracts-background-digital-pattern-texture.jpg";
+export const chatBgImg4 =
+  "https://w0.peakpx.com/wallpaper/580/650/HD-wallpaper-whatsapp-bg-dark-background.jpg";
