@@ -10,14 +10,17 @@ export default function ChatBox() {
 
   useEffect(() => {
     const getConversationDetails = async () => {
-	const getConversation=async(data)=>{
-    	let response=await axios.post("http://127.0.0.1:80/get",data)
-	return response.data
-	}
-	let data=await getConversation({senderId:account.email,receiverId:person.email})
-	
-        console.log(data)
-        setConversation(data);
+      const getConversation = async (data) => {
+        let response = await axios.post("http://127.0.0.1:80/get", data);
+        return response.data;
+      };
+      let data = await getConversation({
+        senderId: account.email,
+        receiverId: person.email,
+      });
+
+      console.log(data);
+      setConversation(data);
     };
     getConversationDetails();
   }, [person.email]);
