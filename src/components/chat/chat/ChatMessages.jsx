@@ -13,10 +13,9 @@ export default function ChatMessages({ person, conversation }) {
 	  	return response.data
 		}
 	  let data=await getmessage(conversation._id);
-	  setMessages(data);
 		}
-	conversation._id && getmessagedetails();
-	},[person._id,conversation._id])
+	 getmessagedetails();
+	},[person._id])
   async function sendText(event) {
     const code = event.keyCode||event.which;
     if ((code === 13)){

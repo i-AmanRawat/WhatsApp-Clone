@@ -7,6 +7,7 @@ exports.adduser=async(req,res)=>{
 	const{name,email,password,profilePicture}=req.body;
  	try{
 		let userexist=await signup.findOne({email:email});
+		// userexist=await bcrypt.compare(password,userexist.password);
 		if(userexist){
 			res.status(200).json({message:"user already exist"})	
 		}else{const con = new signup({ name,email,password,profilePicture});
@@ -68,7 +69,6 @@ exports.newmessage=async(req,res)=>{
 
 exports.getmessage=async(req,res)=>{
  	try{
-	const{conversationId}=req.body
 	let Message=await message.find({conversationId:req.params.id})
 	 return res.status(200).json(Message)
     }catch(error){

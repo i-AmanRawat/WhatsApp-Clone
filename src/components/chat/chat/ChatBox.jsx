@@ -7,7 +7,6 @@ import axios from "axios";
 export default function ChatBox() {
   const { account, person } = useContext(AccountContext);
   const [conversation, setConversation] = useState({});
-
   useEffect(() => {
     const getConversationDetails = async () => {
 	const getConversation=async(data)=>{
@@ -15,7 +14,6 @@ export default function ChatBox() {
 	return response.data
 	}
 	let data=await getConversation({senderId:account.email,receiverId:person.email})
-	
         console.log(data)
         setConversation(data);
     };
