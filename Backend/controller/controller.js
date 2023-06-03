@@ -27,14 +27,14 @@ exports.getuser=async(req,res)=>{
     	res.status(400).json(error.message);	
     }
 }
-exports.addconversation=async(req,res)=>{
+/*exports.addconversation=async(req,res)=>{
  	try{
 	 const{senderId,receiverId}=req.body;	
 	const exist=await converse.findOne({members:{$all:[senderId,receiverId]}});
 	if(exist){
 		return res.status(200).json(`conversation already exist`)
 	}
-	const newConverse=new converse({
+	const newConverse= new converse({
 		members:[senderId,receiverId]
 	})
 	await newConverse.save();
@@ -42,14 +42,20 @@ exports.addconversation=async(req,res)=>{
     }catch(error){
     	res.status(400).json(error.message);	
     }
-}
+}*/
 
 exports.getconversation=async(req,res)=>{
  	try{
-	 const{senderId,receiverId}=req.body;	
+	const{senderId,receiverId}=req.body;	
 	const conversation=await converse.findOne({members:{$all:[senderId,receiverId]}});
-	return res.status(200).json(conversation)
-
+	if(conversation){
+	return res.status(200).json(conversation)}
+	else{
+		const Conversation= new converse({
+		members:[senderId,receiverId]})
+		await Conversation.save();
+		return res.status(200).json(Conversation)
+	}
     }catch(error){
     	res.status(400).json(error.message);	
     }
@@ -75,12 +81,3 @@ exports.getmessage=async(req,res)=>{
     	res.status(400).json(error.message);	
     }
 }
-
-
-
-
-
-
-
-
-

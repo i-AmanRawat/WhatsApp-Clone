@@ -18,9 +18,11 @@ export default function ChatMessages({ person, conversation }) {
       };
       let data = await getmessage(conversation._id);
       setGetTextMsg(data);
-    };
-    getmessagedetails(); //conversation._id &&
-  }, [person._id, newMessageFlag]); //,conversation._id
+	console.log(conversation._id)
+    }
+	console.log(conversation._id)
+     conversation._id && getmessagedetails();//conversation._id
+  }, [person._id,conversation._id,newMessageFlag]); //,conversation._id newMessageFlag person._id
   async function sendText(event) {
     const code = event.keyCode || event.which;
     if (code === 13) {

@@ -6,8 +6,8 @@ export default function Conversation({ user }) {
 
   const getUser = async () => {
     setPerson(user);
-    let data=({senderId:account.email,receiverId:user.email})
-    const res = await axios.post("http://127.0.0.1:80/add",data)
+    /*let data=({senderId:account.email,receiverId:user.email})
+    const res = await axios.post("http://127.0.0.1:80/add",data)*/
   };
 
   return (
