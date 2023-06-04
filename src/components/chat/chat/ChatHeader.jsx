@@ -2,10 +2,9 @@ import { emptyProfilePicture } from "../../../constants/data";
 import { Icon } from "@iconify/react";
 import { AccountContext } from "../../../context/AccountProvider";
 import { useContext } from "react";
-
 export default function ChatHeader({ person }) {
   const { titleCase } = useContext(AccountContext);
-
+  const { activeusers } = useContext(AccountContext)
   return (
     <div className="chat-header ">
       <header className="flex bg-[#1f2c33]  py-1 pt-2 px-4 items-center">
@@ -20,7 +19,8 @@ export default function ChatHeader({ person }) {
         </div>
         <div className="user-name text-[#e8ecee] pl-5 pb-1">
           <h3 className=" font-medium">{titleCase(person.name)}</h3>
-        </div>
+	   <p>{activeusers?.find(user=>user.email===person.email)?'online':'offline'}</p>
+	</div>
         <div className="flex ml-auto space-x-5 ">
           <div className="search-icon">
             <button className=" hover:bg-[#374248] hover:rounded-full ">
@@ -29,10 +29,9 @@ export default function ChatHeader({ person }) {
                 color="#aebac1"
                 width="35"
                 height="35"
-                className="p-1"
-              />
-            </button>
-          </div>
+                className="p-1"/>
+             </button>
+           </div>
           <div className="more-vert-icon">
             <button className=" hover:bg-[#374248] hover:rounded-full ">
               <Icon
@@ -40,8 +39,7 @@ export default function ChatHeader({ person }) {
                 color="#aeb9c1"
                 width="35"
                 height="35"
-                className="p-1"
-              />
+                className="p-1"/>
             </button>
           </div>
         </div>
@@ -49,3 +47,4 @@ export default function ChatHeader({ person }) {
     </div>
   );
 }
+    

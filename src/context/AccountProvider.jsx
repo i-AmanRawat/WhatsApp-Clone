@@ -1,10 +1,15 @@
-import { createContext, useState } from "react";
-
+import { createContext, useState,useRef,useEffect } from "react";
+import {io} from "socket.io-client";
 export const AccountContext = createContext(null); //we will access user data from AccountContext
 
 export default function AccountProvider({ children }) {
   const [account, setAccount] = useState();
   const [person, setPerson] = useState({});
+  const [activeusers, setactiveusers] = useState([]);
+  const socket=useRef();
+  useEffect(()=>{
+	socket.current=io('ws://localhost:9000')
+	},[])
 
   function titleCase(inputText) {
     const name = inputText;
@@ -17,7 +22,7 @@ export default function AccountProvider({ children }) {
 
   return (
     <AccountContext.Provider
-      value={{ account, setAccount, person, setPerson, titleCase }}
+      value={{ account, setAccount, person, setPerson, titleCase , socket , activeusers , setactiveusers  }}
     >
       {children}
     </AccountContext.Provider>

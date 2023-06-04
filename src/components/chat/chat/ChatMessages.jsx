@@ -6,10 +6,19 @@ import ChatMessage from "./ChatMessage";
 import { data } from "autoprefixer";
 
 export default function ChatMessages({ person, conversation }) {
-  const { account } = useContext(AccountContext);
+  const { account,socket } = useContext(AccountContext);
   const [textMsg, setTextMsg] = useState("");
   const [getTextMsg, setGetTextMsg] = useState([]);
+  const [incomingmessage] = useState(null);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
+  useEffect(()=>{
+	socket.current.on('getMessage',data=>{
+		setIncomingMessage({
+			...data,
+			createdAt:Date.now()
+		})
+		})
+	},[])
   useEffect(() => {
     const getmessagedetails = async () => {
       const getmessage = async (id) => {
@@ -22,7 +31,12 @@ export default function ChatMessages({ person, conversation }) {
     }
 	console.log(conversation._id)
      conversation._id && getmessagedetails();//conversation._id
-  }, [person._id,conversation._id,newMessageFlag]); //,conversation._id newMessageFlag person._id
+  }, [conversation._id,newMessageFlag]); //,conversation._id newMessageFlag person._id
+ useEffect(()=>{
+	incomingmessage && conversation?.members?.includes(incomingmessage.senderId)&&
+	setMessage(prev=>[...prev,incomingmessage])
+	},[incomingmessage,conversation])  
+
   async function sendText(event) {
     const code = event.keyCode || event.which;
     if (code === 13) {
@@ -35,6 +49,7 @@ export default function ChatMessages({ person, conversation }) {
       };
       setTextMsg("");
       setNewMessageFlag((prev) => !prev);
+      socket.current.emit('sendMessage',msg);
       let response = await axios.post("http://127.0.0.1:80/msg", msg);
       console.log(msg);
     }

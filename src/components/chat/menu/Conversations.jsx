@@ -4,7 +4,7 @@ import Conversation from "./Conversation";
 import { AccountContext } from "../../../context/AccountProvider";
 
 export default function Conversations({ searchInput }) {
-  const { account } = useContext(AccountContext);
+  const { account,socket,setactiveusers } = useContext(AccountContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +20,12 @@ export default function Conversations({ searchInput }) {
     };
     fetchData();
   }, [searchInput]);
+ useEffect(()=>{
+	socket.current.emit('adduser',account)
+	socket.current.on('getuser',users=>{
+	       setactiveusers(users);
+	})
+	},[account])
   return (
     <div className="">
       {users.map((user) => {
