@@ -1,13 +1,16 @@
-
-const signup=require("../database/dbclient.js");
-const converse=require("../database/dbconverse.js");
-const message=require("../database/dbmessage.js");
+//requiring databases
+const signup=require("../model/dbclient.js");
+const converse=require("../model/dbconverse.js");
+const message=require("../model/dbmessage.js");
+//hashing
 const bcrypt = require('bcryptjs');
+
+//adding new users
 exports.adduser=async(req,res)=>{
 	const{name,email,password,profilePicture}=req.body;
  	try{
 		let userexist=await signup.findOne({email:email});
-		// userexist=await bcrypt.compare(password,userexist.password);
+		userexist=await bcrypt.compare(password,userexist.password);
 		if(userexist){
 			res.status(200).json({message:"user already exist"})	
 		}else{const con = new signup({ name,email,password,profilePicture});
@@ -19,10 +22,11 @@ exports.adduser=async(req,res)=>{
     }
 }
 
+//getting all users in our contacts
 exports.getuser=async(req,res)=>{
  	try{
 	 const users=await signup.find({});
-	 res.status(200).json(users);
+	 return res.status(200).json(users);
     }catch(error){
     	res.status(400).json(error.message);	
     }
@@ -44,6 +48,7 @@ exports.getuser=async(req,res)=>{
     }
 }*/
 
+//checking conversation and getting it
 exports.getconversation=async(req,res)=>{
  	try{
 	const{senderId,receiverId}=req.body;	
@@ -60,6 +65,8 @@ exports.getconversation=async(req,res)=>{
     	res.status(400).json(error.message);	
     }
 }
+
+//posting new messages
 exports.newmessage=async(req,res)=>{
  	try{
 	const newmessage=new message(req.body)
@@ -73,6 +80,7 @@ exports.newmessage=async(req,res)=>{
     }
 }
 
+//getting posted messages
 exports.getmessage=async(req,res)=>{
  	try{
 	let Message=await message.find({conversationId:req.params.id})

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUser} from  "../../../api/api.js";
 import { useEffect, useState, useContext } from "react";
 import Conversation from "./Conversation";
 import { AccountContext } from "../../../context/AccountProvider";
@@ -9,8 +10,8 @@ export default function Conversations({ searchInput }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axios.get("http://127.0.0.1:80/users");
-        const filteredUsers = resp.data.filter((user) =>
+        const Users=await getUser();
+        const filteredUsers = Users.filter((user) =>
           user.name.toLowerCase().includes(searchInput.toLowerCase())
         );
         setUsers(filteredUsers);

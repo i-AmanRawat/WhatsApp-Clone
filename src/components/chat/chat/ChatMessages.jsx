@@ -1,5 +1,7 @@
 import ChatFooter from "./ChatFooter";
 import { useContext, useState, useEffect } from "react";
+import { getMessage} from  "../../../api/api.js";
+import { postMessage} from  "../../../api/api.js";
 import axios from "axios";
 import { AccountContext } from "../../../context/AccountProvider";
 import ChatMessage from "./ChatMessage";
@@ -11,6 +13,7 @@ export default function ChatMessages({ person, conversation }) {
   const [getTextMsg, setGetTextMsg] = useState([]);
   const [incomingmessage] = useState(null);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
+
   useEffect(()=>{
 	socket.current.on('getMessage',data=>{
 		setIncomingMessage({
@@ -19,19 +22,15 @@ export default function ChatMessages({ person, conversation }) {
 		})
 		})
 	},[])
+
   useEffect(() => {
     const getmessagedetails = async () => {
-      const getmessage = async (id) => {
-        let response = await axios.get(`http://127.0.0.1:80/msg${id}`);
-        return response.data;
-      };
-      let data = await getmessage(conversation._id);
+      let data = await getMessage(conversation._id);
       setGetTextMsg(data);
-	console.log(conversation._id)
     }
-	console.log(conversation._id)
-     conversation._id && getmessagedetails();//conversation._id
-  }, [conversation._id,newMessageFlag]); //,conversation._id newMessageFlag person._id
+      getmessagedetails();//conversation._id
+  }, [conversation._id,person.id,newMessageFlag]);
+ 
  useEffect(()=>{
 	incomingmessage && conversation?.members?.includes(incomingmessage.senderId)&&
 	setMessage(prev=>[...prev,incomingmessage])
@@ -47,11 +46,12 @@ export default function ChatMessages({ person, conversation }) {
         type: "text",
         text: textMsg,
       };
+      await postMessage(msg);
+      socket.current.emit('sendMessage',msg);
       setTextMsg("");
       setNewMessageFlag((prev) => !prev);
-      socket.current.emit('sendMessage',msg);
-      let response = await axios.post("http://127.0.0.1:80/msg", msg);
-      console.log(msg);
+ 
+ 
     }
   }
 

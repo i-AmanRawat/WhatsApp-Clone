@@ -1,9 +1,11 @@
 import { Server } from "socket.io";
+
 const io=new Server(9000,{
 	cors:{
 		origin:'http://localhost:5173'
 		}
 	})
+
 let users = [];
 const addUser = (userData, socketId) => {
    console.log("users");
@@ -15,6 +17,7 @@ const addUser = (userData, socketId) => {
   return false; // Return false if the user already exists
 	}
 	};
+
 const getUser = (userId) =>{
 	return users.find(user=>user.sub===userId)
 	} 
