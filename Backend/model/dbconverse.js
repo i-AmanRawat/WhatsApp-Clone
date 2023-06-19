@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+//defining schema
 const converseSchema = new mongoose.Schema({
  	members:{
 		type:Array
@@ -9,5 +11,8 @@ const converseSchema = new mongoose.Schema({
 	{
 		timestamps:true	
 	});
+
+//making model
 const  converse= new mongoose.model("Converse", converseSchema);
+
 module.exports = converse;

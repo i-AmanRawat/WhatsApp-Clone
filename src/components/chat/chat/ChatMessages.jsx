@@ -1,27 +1,40 @@
 import ChatFooter from "./ChatFooter";
 import { useContext, useState, useEffect } from "react";
+import { getMessage} from  "../../../api/api.js";
+import { postMessage} from  "../../../api/api.js";
 import axios from "axios";
 import { AccountContext } from "../../../context/AccountProvider";
 import ChatMessage from "./ChatMessage";
 import { data } from "autoprefixer";
 
 export default function ChatMessages({ person, conversation }) {
-  const { account } = useContext(AccountContext);
+  const { account,socket } = useContext(AccountContext);
   const [textMsg, setTextMsg] = useState("");
   const [getTextMsg, setGetTextMsg] = useState([]);
+  const [incomingmessage] = useState(null);
   const [newMessageFlag, setNewMessageFlag] = useState(false);
+
+  useEffect(()=>{
+	socket.current.on('getMessage',data=>{
+		setIncomingMessage({
+			...data,
+			createdAt:Date.now()
+		})
+		})
+	},[])
 
   useEffect(() => {
     const getmessagedetails = async () => {
-      const getmessage = async (id) => {
-        let response = await axios.get(`http://127.0.0.1:80/msg${id}`);
-        return response.data;
-      };
-      let data = await getmessage(conversation._id);
+      let data = await getMessage(conversation._id);
       setGetTextMsg(data);
-    };
-    getmessagedetails(); //conversation._id &&
-  }, [person._id, newMessageFlag]); //,conversation._id
+    }
+      getmessagedetails();//conversation._id
+  }, [conversation._id,person.id,newMessageFlag]);
+ 
+ useEffect(()=>{
+	incomingmessage && conversation?.members?.includes(incomingmessage.senderId)&&
+	setMessage(prev=>[...prev,incomingmessage])
+	},[incomingmessage,conversation])  
 
   async function sendText(event) {
     const code = event.keyCode || event.which;
@@ -33,10 +46,12 @@ export default function ChatMessages({ person, conversation }) {
         type: "text",
         text: textMsg,
       };
+      await postMessage(msg);
+      socket.current.emit('sendMessage',msg);
       setTextMsg("");
       setNewMessageFlag((prev) => !prev);
-      let response = await axios.post("http://127.0.0.1:80/msg", msg);
-      console.log(msg);
+ 
+ 
     }
   }
 

@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import  {addUser} from  "../../api/api.js";
 import React from "react";
 import {
   profilePicture01,
@@ -26,14 +27,8 @@ export default function LoginDialog() {
     setAccount((prevData) => {
       return { ...prevData, ...data };
     });
-    const { name, email, password } = data;
-    await fetch("http://127.0.0.1:80/signup", {
-      		method: "POST",
-      		headers: {
-        		"Content-Type": "application/json",
-      			},
-      		body: JSON.stringify({ name, email, password, profilePicture }),
-    });
+    const { name, email, password} = data;
+    await addUser( {name, email, password,profilePicture });
     console.log(data);
   };
   console.log(profilePicture01);

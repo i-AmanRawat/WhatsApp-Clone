@@ -1,12 +1,16 @@
-
-const signup=require("../database/dbclient.js");
-const converse=require("../database/dbconverse.js");
-const message=require("../database/dbmessage.js");
+//requiring databases
+const signup=require("../model/dbclient.js");
+const converse=require("../model/dbconverse.js");
+const message=require("../model/dbmessage.js");
+//hashing
 const bcrypt = require('bcryptjs');
+
+//adding new users
 exports.adduser=async(req,res)=>{
 	const{name,email,password,profilePicture}=req.body;
  	try{
 		let userexist=await signup.findOne({email:email});
+		userexist=await bcrypt.compare(password,userexist.password);
 		if(userexist){
 			res.status(200).json({message:"user already exist"})	
 		}else{const con = new signup({ name,email,password,profilePicture});
@@ -18,22 +22,23 @@ exports.adduser=async(req,res)=>{
     }
 }
 
+//getting all users in our contacts
 exports.getuser=async(req,res)=>{
  	try{
 	 const users=await signup.find({});
-	 res.status(200).json(users);
+	 return res.status(200).json(users);
     }catch(error){
     	res.status(400).json(error.message);	
     }
 }
-exports.addconversation=async(req,res)=>{
+/*exports.addconversation=async(req,res)=>{
  	try{
 	 const{senderId,receiverId}=req.body;	
 	const exist=await converse.findOne({members:{$all:[senderId,receiverId]}});
 	if(exist){
 		return res.status(200).json(`conversation already exist`)
 	}
-	const newConverse=new converse({
+	const newConverse= new converse({
 		members:[senderId,receiverId]
 	})
 	await newConverse.save();
@@ -41,18 +46,27 @@ exports.addconversation=async(req,res)=>{
     }catch(error){
     	res.status(400).json(error.message);	
     }
-}
+}*/
 
+//checking conversation and getting it
 exports.getconversation=async(req,res)=>{
  	try{
-	 const{senderId,receiverId}=req.body;	
+	const{senderId,receiverId}=req.body;	
 	const conversation=await converse.findOne({members:{$all:[senderId,receiverId]}});
-	return res.status(200).json(conversation)
-
+	if(conversation){
+	return res.status(200).json(conversation)}
+	else{
+		const Conversation= new converse({
+		members:[senderId,receiverId]})
+		await Conversation.save();
+		return res.status(200).json(Conversation)
+	}
     }catch(error){
     	res.status(400).json(error.message);	
     }
 }
+
+//posting new messages
 exports.newmessage=async(req,res)=>{
  	try{
 	const newmessage=new message(req.body)
@@ -66,21 +80,12 @@ exports.newmessage=async(req,res)=>{
     }
 }
 
+//getting posted messages
 exports.getmessage=async(req,res)=>{
  	try{
-	const{conversationId}=req.body
 	let Message=await message.find({conversationId:req.params.id})
 	 return res.status(200).json(Message)
     }catch(error){
     	res.status(400).json(error.message);	
     }
 }
-
-
-
-
-
-
-
-
-
