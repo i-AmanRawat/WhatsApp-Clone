@@ -4,6 +4,7 @@ const io=new Server(9000,{
 	cors:{
 		origin:'https://chatty-chaty.netlify.app/'
 		}
+	console.log("connected")
 	})
 
 let users = [];
