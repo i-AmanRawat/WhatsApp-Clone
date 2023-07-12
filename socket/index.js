@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io=new Server(9000,{
 	cors:{
-		origin:'https://bejewelled-moxie-ea9b9d.netlify.app/'
+		origin:'https://chatu-chatu.netlify.app/'
 		}
 	})
 
