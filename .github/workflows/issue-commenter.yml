@@ -1,7 +1,7 @@
-name: Comment on Opened Pull Request
+name: Comment on Opened Issues
 
 on:
-  pull_request:
+  issues:
     types:
       - opened
 
